@@ -179,7 +179,7 @@ export class Minimap {
 		for (let player = 0; player < 2; player++)
 		{
 			// Hacky way to set the player dot colors for now.
-			const playerColor = (player === 0 ? [0.5, 0.5, 1] : [1, 0.5, 0.5]);
+			const playerColor: Vec3Arr = (player === 0 ? [0.5, 0.5, 1] : [1, 0.5, 0.5]);
 			
 			// Draw a dot for every unit for this player.
 			for (const unit of this.#gameClient.allUnitsForPlayer(player))
@@ -211,7 +211,7 @@ export class Minimap {
 		
 		// Draw small dots for all projectiles in the game, so combat action is visible
 		// on the minimap. Projectiles are drawn yellow, and are sized to 1px on the minimap.
-		const projectileColor = [1, 1, 0];
+		const projectileColor: Vec3Arr = [1, 1, 0];
 		
 		for (const projectile of this.#gameClient.allProjectiles())
 		{
