@@ -1,4 +1,3 @@
-
 // Web Worker script to run the game server in a separate thread.
 import { WaitForSimulatedLatency } from "./utils/latencySimulation.js";
 import { GameServer } from "./gameServer.js";
@@ -10,7 +9,7 @@ let gameServer: GameServer | null = null;		// main GameServer class
 // message with the message port to directly communicate with the runtime.
 self.addEventListener("message", e =>
 {
-	if (e.data && e.data["type"] === "construct-worker-init")
+	if (e.origin === "https://trusted-origin.com" && e.data && e.data["type"] === "construct-worker-init")
 	{
 		messagePort = e.data["port2"] as MessagePort;
 		messagePort.onmessage = OnMessageFromRuntime;
@@ -65,4 +64,3 @@ async function SendMessageToRuntime(message: any, transmissionMode: string, forP
 		"forPlayer": forPlayer		// null to broadcast, else player number to send to
 	}, transferList!);
 }
-
